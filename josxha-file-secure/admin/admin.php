@@ -41,11 +41,14 @@ class JosxhaFileSecureAdmin {
         $url = home_url($wp->request) . '/?file=[NAME DER DATEI]';
 
         if(isset($_FILES['file']) && !empty($_FILES['file'])) {
-            $path = JOSXHA_FILE_SECURE_FILES . basename( $_FILES['file']['name']);
-            if(move_uploaded_file ( $_FILES['file']['tmp_name'], $path))
-                $message = "<p style='color: green'>Die Datei ".  basename( $_FILES['file']['name']). " wurde hochgeladen.</p>";
-            else
-                $message = "<p style='color: red'>Die Datei konnte nicht hochgeladen werden.</p>";
+            $filename = $_FILES['file']['name'];
+            if (array_key_exists (pathinfo($filename, PATHINFO_EXTENSION), array("png","jpg","jpeg","pdf","mp3"))) {
+                $path = JOSXHA_FILE_SECURE_FILES . basename($filename);
+                if (move_uploaded_file($_FILES['file']['tmp_name'], $path))
+                    $message = "<p style='color: green'>" . basename($filename) . " wurde erfolgreich hochgeladen.</p>";
+                else
+                    $message = "<p style='color: red'>Die Datei konnte nicht hochgeladen werden.</p>";
+            } else $message = "<p style='color: red'>Dateien mit diesem Dateiformat dürfen nicht hochgeladen werden.</p>";
         }
         ?>
 
@@ -73,7 +76,7 @@ class JosxhaFileSecureAdmin {
                     foreach (scandir(JOSXHA_FILE_SECURE_FILES) as $file)
                         if ($file != ".htaccess" && $file != "index.html"
                             && $file != "." && $file != "..") {
-                            echo "<li>$file</li>";
+                            echo "<li><a target='_blank' href='" . home_url($wp->request) . '/?file=' . $file . "'>$file</a></li>";
                         }
                 ?>
             </ul>
