@@ -7,7 +7,7 @@
  *
  * Plugin Name: Restrict File Access
  * Description: Schütze hochgeladene Dateien vor unbefugtem Zugriff. (Im Admin Interface unter Media->Geschützte Dateien zu finden)
- * Version: 0.1.0
+ * Version: 0.1.1
  * Author: Joscha Eckert
  * Author URI: https://joscha-eckert.de
  */

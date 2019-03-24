@@ -42,7 +42,7 @@ class JosxhaFileSecureAdmin {
 
         if(isset($_FILES['file']) && !empty($_FILES['file'])) {
             $filename = $_FILES['file']['name'];
-            if (array_key_exists (pathinfo($filename, PATHINFO_EXTENSION), array("png","jpg","jpeg","pdf","mp3"))) {
+            if (in_array(pathinfo($filename, PATHINFO_EXTENSION), array("png","jpg","jpeg","pdf","mp3", "mp4"), true)) {
                 $path = JOSXHA_FILE_SECURE_FILES . basename($filename);
                 if (move_uploaded_file($_FILES['file']['tmp_name'], $path))
                     $message = "<p style='color: green'>" . basename($filename) . " wurde erfolgreich hochgeladen.</p>";

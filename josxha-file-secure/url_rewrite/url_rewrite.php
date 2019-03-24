@@ -47,8 +47,8 @@ class FileSecure {
         is_user_logged_in() or die("You need to be logged in to access this file.");
 
         $file_path = JOSXHA_FILE_SECURE_FILES.$filename;
-        header( 'Cache-Control: no-cache, must-revalidate' );
-        header( 'Expires: Mon, 26 Jul 1997 05:00:00 GMT' );
+        //header( 'Cache-Control: no-cache, must-revalidate' );
+        //header( 'Expires: Mon, 26 Jul 1997 05:00:00 GMT' );
         if (!file_exists($file_path))
             die("File not found.");
         header('Content-Length: '. filesize($file_path));
