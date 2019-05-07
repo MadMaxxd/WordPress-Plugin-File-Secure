@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1846e65a-9af3-4e1f-9edc-de5a0859f91b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Wordpress Plugin v0.1.1.zip" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/josxha-file-secure/admin/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/josxha-file-secure/admin/admin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/josxha-file-secure/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/josxha-file-secure/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/josxha-file-secure/url_rewrite/url_rewrite.php" beforeDir="false" afterPath="$PROJECT_DIR$/josxha-file-secure/url_rewrite/url_rewrite.php" afterDir="false" />
@@ -30,11 +30,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/josxha-file-secure/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+            <state relative-caret-position="238">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
               <folding>
                 <element signature="e#6#350#0#PHP" expanded="true" />
               </folding>
@@ -45,28 +45,46 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/josxha-file-secure/url_rewrite/url_rewrite.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="58" column="23" selection-start-line="58" selection-start-column="23" selection-end-line="58" selection-end-column="23" />
+            <state relative-caret-position="1326">
+              <caret line="83" column="50" lean-forward="true" selection-start-line="83" selection-start-column="50" selection-end-line="83" selection-end-column="50" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/josxha-file-secure/admin/admin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="48" column="20" lean-forward="true" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
+            <state relative-caret-position="527">
+              <caret line="119" column="119" selection-start-line="119" selection-start-column="119" selection-end-line="119" selection-end-column="119" />
               <folding>
                 <element signature="e#6#95#0#PHP" expanded="true" />
                 <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+                <element signature="e#6208#6255#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/josxha-file-secure/admin/functions.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="544">
+              <caret line="32" column="1" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="TypeScript File" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -78,6 +96,11 @@
       <find>file</find>
       <find>template_redirect_intercept</find>
       <find>uploaded_file</find>
+      <find>onclick</find>
+      <find>console.lo</find>
+      <find>JOSXHA_FILE_SECURE_PATH</find>
+      <find>no valid</find>
+      <find>$_GET['deleteFile']</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -92,16 +115,18 @@
         <option value="$PROJECT_DIR$/josxha-file-secure/plugin.php" />
         <option value="$PROJECT_DIR$/josxha-file-secure/admin.php" />
         <option value="&lt;258b01e9-1ba8-4e07-b0be-13fbe4b06eab&gt;/neu.joscha-eckert.de/wp-content/uploads/files/.htaccess" />
-        <option value="$PROJECT_DIR$/josxha-file-secure/url_rewrite/url_rewrite.php" />
         <option value="$PROJECT_DIR$/test.php" />
-        <option value="$PROJECT_DIR$/josxha-file-secure/index.php" />
         <option value="$PROJECT_DIR$/text.php" />
+        <option value="$PROJECT_DIR$/josxha-file-secure/admin/functions.ts" />
+        <option value="$PROJECT_DIR$/josxha-file-secure/admin/functions.js" />
+        <option value="$PROJECT_DIR$/josxha-file-secure/url_rewrite/url_rewrite.php" />
         <option value="$PROJECT_DIR$/josxha-file-secure/admin/admin.php" />
+        <option value="$PROJECT_DIR$/josxha-file-secure/index.php" />
       </list>
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-10" />
     <option name="width" value="980" />
     <option name="height" value="1050" />
@@ -111,6 +136,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -118,11 +144,27 @@
               <item name="WordPress-Plugin-File-Secure" type="b2602c69:ProjectViewProjectNode" />
               <item name="WordPress-Plugin-File-Secure" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="WordPress-Plugin-File-Secure" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WordPress-Plugin-File-Secure" type="462c0819:PsiDirectoryNode" />
+              <item name="josxha-file-secure" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="WordPress-Plugin-File-Secure" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WordPress-Plugin-File-Secure" type="462c0819:PsiDirectoryNode" />
+              <item name="josxha-file-secure" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="WordPress-Plugin-File-Secure" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WordPress-Plugin-File-Secure" type="462c0819:PsiDirectoryNode" />
+              <item name="josxha-file-secure" type="462c0819:PsiDirectoryNode" />
+              <item name="url_rewrite" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -135,15 +177,18 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="fileTemplates" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2018.3.4\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\projects\test\pdf\josxha-file-secure" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Joscha\Documents\GitHub\WordPress-Plugin-File-Secure\josxha-file-secure\admin" />
       <recent name="C:\xampp\htdocs\projects\test\pdf\josxha-file-secure\url_rewrite" />
       <recent name="C:\xampp\htdocs\projects\test\pdf\josxha-file-secure\admin" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\projects\test\pdf\josxha-file-secure" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -187,18 +232,23 @@
       <workItem from="1553119510673" duration="1298000" />
       <workItem from="1553272168882" duration="10000" />
       <workItem from="1553446913382" duration="1803000" />
+      <workItem from="1553459186281" duration="22000" />
+      <workItem from="1553464726725" duration="705000" />
+      <workItem from="1557230145277" duration="14767000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22117000" />
+    <option name="totallyTimeSpent" value="37611000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26174498" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27292112" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="TypeScript" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32960895" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32960895" />
@@ -255,46 +305,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.php">
+    <entry file="file://$PROJECT_DIR$/test.php" />
+    <entry file="file://$PROJECT_DIR$/text.php" />
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/standard_7.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="107" lean-forward="true" selection-start-line="7" selection-end-line="7" selection-end-column="107" />
+        <state relative-caret-position="301">
+          <caret line="391" column="9" selection-start-line="391" selection-start-column="9" selection-end-line="391" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/text.php">
+    <entry file="file://$PROJECT_DIR$/josxha-file-secure/admin/functions.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="10" column="17" lean-forward="true" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+        <state relative-caret-position="51">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/josxha-file-secure/url_rewrite/url_rewrite.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="58" column="23" selection-start-line="58" selection-start-column="23" selection-end-line="58" selection-end-column="23" />
+        <state relative-caret-position="1326">
+          <caret line="83" column="50" lean-forward="true" selection-start-line="83" selection-start-column="50" selection-end-line="83" selection-end-column="50" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/josxha-file-secure/index.php">
+    <entry file="file://$PROJECT_DIR$/josxha-file-secure/admin/functions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-          <folding>
-            <element signature="e#6#350#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="544">
+          <caret line="32" column="1" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/josxha-file-secure/admin/admin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="48" column="20" lean-forward="true" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
+        <state relative-caret-position="527">
+          <caret line="119" column="119" selection-start-line="119" selection-start-column="119" selection-end-line="119" selection-end-column="119" />
           <folding>
             <element signature="e#6#95#0#PHP" expanded="true" />
             <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+            <element signature="e#6208#6255#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/josxha-file-secure/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="e#6#350#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
