@@ -15,21 +15,68 @@
  */
 
 if (!defined( 'ABSPATH')) exit;
-define("JOSXHA_FILE_SECURE_PATH", WP_PLUGIN_DIR ."/josxha-file-secure");
-define("JOSXHA_FILE_SECURE_PATH_PUBLIC", "/wp-content/plugins/josxha-file-secure/");
-define("JOSXHA_FILE_SECURE_FILES", ABSPATH."wp-content/uploads/files/");
 
+// /LOCALPATH/wp-content/plugins/PLUGINFOLDER/index.php
+define( 'JOSXHARFA_PLUGIN', __FILE__ );
 
-add_action( 'init', 'josxha_file_secure_init' );
-function josxha_file_secure_init() {
-    if (!file_exists(JOSXHA_FILE_SECURE_FILES))
-        mkdir(JOSXHA_FILE_SECURE_FILES);
-    if (!file_exists(JOSXHA_FILE_SECURE_FILES.".htaccess"))
-        file_put_contents(JOSXHA_FILE_SECURE_FILES.".htaccess", "Deny from all");
-    if (!file_exists(JOSXHA_FILE_SECURE_FILES."index.html"))
-        file_put_contents(JOSXHA_FILE_SECURE_FILES."index.html", "");
+// PLUGINFOLDER/index.php
+define( 'JOSXHARFA_PLUGIN_BASENAME', plugin_basename( JOSXHARFA_PLUGIN ) );
+
+// PLUGINFOLDER (plugin name)
+define( 'JOSXHARFA_PLUGIN_NAME', trim( dirname( JOSXHARFA_PLUGIN_BASENAME ), '/' ) );
+
+// /local/path/wp-content/plugins/PLUGINFOLDER
+define( 'JOSXHARFA_PLUGIN_DIR', untrailingslashit( dirname( JOSXHARFA_PLUGIN ) ) );
+
+/**
+ * @return string
+ * "http(s)://DOMAIN/wp-content/uploads/files"
+ */
+function josxharfa_upload_url() {
+	return wp_upload_dir()["baseurl"] . "/files";
 }
 
+/**
+ * @return string
+ * "http(s)://DOMAIN/wp-content/uploads/files"
+ */
+function josxharfa_upload_dir() {
+	return wp_upload_dir()["basedir"] . "/files";
+}
 
-require_once JOSXHA_FILE_SECURE_PATH.'/admin/admin.php';
-require_once JOSXHA_FILE_SECURE_PATH.'/url_rewrite/url_rewrite.php';
+/**
+ * @param string $path
+ * additional path
+ * @return string
+ * "http(s)://DOMAIN/wp-content/plugins/PLUGINFOLDER"
+ */
+function josxharfa_plugin_url( $path = '' ) {
+    return josxharfa_useSslIfActive(plugins_url( $path, JOSXHARFA_PLUGIN ));
+}
+
+/**
+ * @param $url
+ * an url
+ * @return string
+ * to https converted url if ssl is enabled
+ */
+function josxharfa_useSslIfActive($url) {
+	if ( is_ssl() and 'http:' == substr( $url, 0, 5 ) )
+		return 'https:' . substr( $url, 5 );
+	else return $url;
+}
+
+// run on plugin activation
+add_action( 'init', 'josxharfa_init' );
+function josxharfa_init() {
+	$uploadDir = josxharfa_upload_dir();
+    if (!file_exists($uploadDir))
+        mkdir($uploadDir);
+    if (!file_exists($uploadDir."/.htaccess"))
+        file_put_contents($uploadDir."/.htaccess", "Deny from all");
+    if (!file_exists($uploadDir."/index.html"))
+        file_put_contents($uploadDir."/index.html", "");
+}
+
+require_once JOSXHARFA_PLUGIN_DIR.'/admin/admin.php';
+require_once JOSXHARFA_PLUGIN_DIR.'/url_rewrite/url_rewrite.php';

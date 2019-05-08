@@ -1,16 +1,4 @@
-function copy(event, url) {
-    if (!event)
-        event = window.event;
-    const sender = event.srcElement || event.target;
-    sender.src = "/wp-content/plugins/josxha-file-secure/admin/ic_success.png";
-    setTimeout(function () {
-        sender.src = "/wp-content/plugins/josxha-file-secure/admin/ic_copy.png";
-    }, 1000);
-
-    copyToClipboard(url);
-}
-
-function copyToClipboard(text) {
+function josxhaCopyToClipboard(text) {
     if (window.clipboardData && window.clipboardData.setData) {
         // IE specific code path to prevent textarea being shown while dialog is visible.
         return clipboardData.setData("Text", text);
