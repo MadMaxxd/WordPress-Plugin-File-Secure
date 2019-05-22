@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/joschaeckert
 Tags: restrict, file, secure, sicher, schützen, angemeldet, Dateien, login, permission, Joscha, Eckert, josxha, privat, private, josxha
 Requires at least: 4.9
 Tested up to: 5.2
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -44,6 +44,10 @@ For more information, have a look at the [GitHub project](https://github.com/jos
 = 1.1.0 =
 
 * Settings options added
-    * Error pages can be changed
-    * Redirect if file cannot or may not be displayed
-    * User groups can be allowed or blocked
+* Error pages can be changed
+* Redirect if file cannot or may not be displayed
+* User groups can be allowed or blocked
+
+= 1.1.1 =
+
+* fixed error that occurred on update

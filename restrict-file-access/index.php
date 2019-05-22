@@ -8,7 +8,7 @@
  * Plugin Name: Restrict File Access
  * Plugin URI: https://github.com/josxha/WordPress-Plugin-File-Secure
  * Description: Schütze hochgeladene Dateien vor unbefugtem Zugriff. (Im Admin Interface auffindbar unter Medien->Geschützte Dateien)
- * Version: 1.1.0
+ * Version: 1.1.1
  * Author: Joscha Eckert
  * License: GPLv2
  * Author URI: https://joscha-eckert.de
@@ -117,6 +117,11 @@ function josxharfa_activation() {
 	$settings["userRole"] = $roles;
 	update_option(JOSXHARFA_PLUGIN_NAME, $settings, "yes");
 }
+
+// run on plugin update
+add_action( 'upgrader_process_complete', function( $upgrader_object, $options ) {
+	josxharfa_activation();
+},10, 2);
 
 require_once JOSXHARFA_PLUGIN_DIR.'/admin/admin.php';
 require_once JOSXHARFA_PLUGIN_DIR.'/url_rewrite/url_rewrite.php';
