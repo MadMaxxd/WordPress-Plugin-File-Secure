@@ -55,53 +55,59 @@ class JosxhaRfaFileSecure {
 			die( "File not found." );
 		}
 		header( 'Content-Length: ' . filesize( $file_path ) );
-		$extension = strtolower( pathinfo( $filename, PATHINFO_EXTENSION ) );
-		switch ( $extension ) {
-			case "png":
-				header( "Content-type: image/png" );
-				header( "Content-disposition: inline;filename=" . $filename );
-				break;
-			case "jpg":
-			case "jpeg":
-				header( "Content-type: image/jpeg" );
-				header( "Content-disposition: inline;filename=" . $filename );
-				break;
-			case "gif":
-				header( "Content-type: image/gif" );
-				header( "Content-disposition: inline;filename=" . $filename );
-				break;
-			case "mp3":
-				header( "Content-type:audio/mpeg" );
-				header( "Content-disposition: inline;filename=" . $filename );
-				break;
-			case "mp4":
-				header( "Content-type:video/mp4" );
-				header( "Content-disposition: inline;filename=" . $filename );
-				break;
-			case "pdf":
-				header( "Content-type:application/pdf" );
-				header( "Content-disposition: inline;filename=" . $filename );
-				break;
-			case "txt":
-				header( "Content-type:text/plain" );
-				header( "Content-disposition: inline;filename=" . $filename );
-				break;
-			case "docx":
-			case "xlsx":
-			case "doc":
-			case "xls":
-			case "ppt":
-			case "pptx":
-			case "csv":
-				header( "Content-type:application/octet-stream" );
-				header( "Content-Disposition:attachment;filename=" . $filename );
-				break;
-			default:
-				die( "No valid file format." );
-				break;
+		
+		if ( function_exists( 'mime_content_type' ) ) {
+			$mime = mime_content_type( $file_path );
 		}
+		if ( ! isset( $mime ) || $mime === false ) {
+			$extension = strtolower( pathinfo( $filename, PATHINFO_EXTENSION ) );
+			switch ( $extension ) {
+				case "png":
+					$mime = 'image/png';
+					break;
+				case "jpg":
+				case "jpeg":
+					$mime = 'image/jpeg';
+					break;
+				case "gif":
+					$mime = 'image/gif';
+					break;
+				case "mp3":
+					$mime = 'audio/mpeg';
+					break;
+				case "mp4":
+					$mime = 'video/mp4';
+					break;
+				case "pdf":
+					$mime = 'application/pdf';
+					break;
+				case "txt":
+					$mime = 'text/plain';
+					break;
+				case "docx":
+				case "xlsx":
+				case "doc":
+				case "odt":
+				case "xls":
+				case "ppt":
+				case "pptx":
+				case "csv":
+				default:
+					$mime = 'application/octet-stream';
+					break;
+			}
+		}
+		
+		header( "Content-type: $mime" );
+		header( "Content-Disposition:" . $this->get_content_disposition( $mime ) . ";filename=" . $filename );
 
 		readfile( $file_path );
+	}
+	
+	function get_content_disposition( $mime ) {
+		$inline = [ 'image/png', 'image/jpeg', 'image/gif', 'audio/mpeg', 'video/mp4', 'application/pdf', 'text/plain' ];
+
+		return in_array( $mime, $inline ) ? 'inline' : 'attachment';
 	}
 }
 
