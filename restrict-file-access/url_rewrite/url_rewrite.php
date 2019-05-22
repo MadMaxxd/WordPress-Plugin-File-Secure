@@ -7,11 +7,11 @@
  */
 
 class JosxhaRfaFileSecure {
-    private $settings;
+	private $settings;
 
-    public function __construct() {
-        $this->settings = get_option(JOSXHARFA_PLUGIN_NAME);
-    }
+	public function __construct() {
+		$this->settings = stripslashes_deep(get_option(JOSXHARFA_PLUGIN_NAME));
+	}
 
 	function activate() {
 		global $wp_rewrite;
@@ -50,37 +50,53 @@ class JosxhaRfaFileSecure {
 		$this->output( $message );
 	}
 
+	function accessNotPermitted() {
+		$preferences = $this->settings['onAccess'];
+		if ($preferences['action'] === "redirect") {
+			header("Location: " . $preferences['url']);
+			die();
+		}
+		if ($preferences['text'] === "")
+			die(JOSXHARFA_NOT_PERMITTED_DEFAULT_TEXT);
+		else
+			die($preferences['text']);
+	}
+
+	function fileNotFound() {
+		$preferences = $this->settings['notFound'];
+		if ($preferences['action'] === "redirect") {
+			header("Location: " . $preferences['url']);
+			die();
+		}
+		if ($preferences['text'] === "")
+			die(JOSXHARFA_FILE_NOT_FOUND_DEFAULT_TEXT);
+		else
+			die($preferences['text']);
+	}
+
 	function output( $filename ) {
-        // test if user is allowed to view file
-		if (!is_user_logged_in()) { //TODO überprüfe user role
-        $user = get_currentuserinfo();
-        var_dump($user);
-        $preferences = $this->settings['onAccess'];
-        if ($preferences['action'] === "redirect") {
-            header("Location: " . $preferences['url']);
-            die();
-        }
-        if ($preferences['text'] === "")
-            die(JOSXHARFA_NOT_PERMITTED_DEFAULT_TEXT);
-        else
-            die($preferences['text']);
-    }
+		// test if user is allowed to view file
+		if (!is_user_logged_in())
+			$this->accessNotPermitted();
+
+		$rolesOfUser = get_currentuserinfo()->roles;        // array of all user roles of the active user
+		$allowedUserRoles = $this->settings["userRole"];    // dictionary with all relevant available user roles
+		$success = false;
+		foreach ( $rolesOfUser as $role ) {
+			if (in_array($role, $allowedUserRoles) && $allowedUserRoles[$role] === true) {
+				$success = true;
+				break;
+			}
+		}
+		if (!$success)
+			$this->accessNotPermitted();
 
 		// show file
 		$file_path = josxharfa_upload_dir() . "/" . $filename;
-        if ( ! file_exists( $file_path ) ) {
-            $preferences = $this->settings['notFound'];
-            if ($preferences['action'] === "redirect") {
-                header("Location: " . $preferences['url']);
-                die();
-            }
-            if ($preferences['text'] === "")
-                die(JOSXHARFA_FILE_NOT_FOUND_DEFAULT_TEXT);
-            else
-                die($preferences['text']);
-        }
-		header( 'Content-Length: ' . filesize( $file_path ) );
-		
+		if ( ! file_exists( $file_path ) ) {
+			$this->fileNotFound();
+		}
+
 		if ( function_exists( 'mime_content_type' ) ) {
 			$mime = mime_content_type( $file_path );
 		}
@@ -122,13 +138,14 @@ class JosxhaRfaFileSecure {
 					break;
 			}
 		}
-		
+
 		header( "Content-type: $mime" );
+		header( 'Content-Length: ' . filesize( $file_path ) );
 		header( "Content-Disposition:" . $this->get_content_disposition( $mime ) . ";filename=" . $filename );
 
 		readfile( $file_path );
 	}
-	
+
 	function get_content_disposition( $mime ) {
 		$inline = [ 'image/png', 'image/jpeg', 'image/gif', 'audio/mpeg', 'video/mp4', 'application/pdf', 'text/plain' ];
 

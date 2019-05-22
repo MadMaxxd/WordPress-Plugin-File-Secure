@@ -115,6 +115,19 @@ class JosxhaRfaAdmin {
 
             <div class="tab-content">
                 <div id="files" class="tab-pane active">
+                    <h2>Anleitung</h2>
+                    <p class="josxhaText">
+                        Auf die hochgeladenen Dateien kann verlinkt werden. Bilder können zudem auf Seiten und Beiträgen über die URL eingebunden werden. <br/>
+                        Es können nur angemeldete Nutzer auf die Dateien zugreifen, ein direkter Zugriff ist ebenfalls nicht möglich.
+                    </p>
+                    <p class="josxhaText">
+                        Der Aufbau des Links ist wie folgt:<br>
+		                <?php echo $url ?>
+                    </p>
+                    <p class="josxhaText">
+                        Erlaubte Dateiformate sind .png .jpg .jpeg .pdf .mp3 .mp4 .xlsx .docx .doc .xls .ppt .pptx .txt .csv .gif
+                    </p>
+                    <br>
                     <h2>Datei hochladen</h2>
                     <form action="" id="uploadFile" enctype="multipart/form-data" method="post">
                         <input type="file" name="file">
@@ -229,10 +242,11 @@ class JosxhaRfaAdmin {
                                 <td>
                                     <label class="josxhaText">
                                         <textarea
+                                                maxlength="10000"
                                                 placeholder="<?php echo JOSXHARFA_NOT_PERMITTED_DEFAULT_TEXT ?>"
                                                 name="onAccess[text]"
                                                 style="width: 90%; min-height: 50px"
-                                        ><?php echo $settings['onAccess']['text']; ?></textarea>
+                                        ><?php echo stripslashes($settings['onAccess']['text']); ?></textarea>
                                     </label>
                                 </td>
                                 <td style="vertical-align: top">
@@ -241,7 +255,7 @@ class JosxhaRfaAdmin {
                                                 style="width: 50%"
                                                 type="text"
                                                 name="onAccess[url]"
-                                                value="<?php echo $settings['onAccess']['url']; ?>"
+                                                value="<?php echo stripslashes($settings['onAccess']['url']); ?>"
                                                 placeholder="<?php echo JOSXHARFA_DEFAULT_URL ?>">
                                     </label>
                                 </td>
@@ -279,15 +293,21 @@ class JosxhaRfaAdmin {
                                     <label class="josxhaText">
                                         <textarea
                                                 placeholder="<?php echo JOSXHARFA_FILE_NOT_FOUND_DEFAULT_TEXT ?>"
+                                                maxlength="10000"
                                                 name="notFound[text]"
                                                 style="width: 90%;
                                                 min-height: 50px"
-                                        ><?php echo $settings['notFound']['text']; ?></textarea>
+                                        ><?php echo stripslashes($settings['notFound']['text']); ?></textarea>
                                     </label>
                                 </td>
                                 <td style="vertical-align: top">
                                     <label class="josxhaText">
-                                        <input style="width: 50%" type="text" name="notFound[url]" value="<?php echo $settings['notFound']['url']; ?>" placeholder="<?php echo JOSXHARFA_DEFAULT_URL ?>">
+                                        <input
+                                                style="width: 50%"
+                                                type="text"
+                                                name="notFound[url]"
+                                                value="<?php echo stripslashes($settings['notFound']['url']); ?>"
+                                                placeholder="<?php echo JOSXHARFA_DEFAULT_URL ?>">
                                     </label>
                                 </td>
                             </tr>
@@ -316,24 +336,11 @@ class JosxhaRfaAdmin {
                 </div>
 
                 <div id="help" class="tab-pane">
-                    <h2>Anleitung</h2>
-                    <p class="josxhaText">
-                        Auf die hochgeladenen Dateien kann verlinkt werden. Bilder können zudem auf Seiten und Beiträgen über die URL eingebunden werden. <br/>
-                        Es können nur angemeldete Nutzer auf die Dateien zugreifen, ein direkter Zugriff ist ebenfalls nicht möglich.
-                    </p>
-                    <p class="josxhaText">
-                        Der Aufbau des Links ist wie folgt:<br>
-                        <?php echo $url ?>
-                    </p>
-                    <p class="josxhaText">
-                        Erlaubte Dateiformate sind .png .jpg .jpeg .pdf .mp3 .mp4 .xlsx .docx .doc .xls .ppt .pptx .txt .csv .gif
-                    </p>
-                    <br>
                     <h2>Support</h2>
                     <p class="josxhaText">Du brauchst Hilfe oder hast einen Fehler entdeckt? Dieses Plugin hat ein Forum unter <a target="_blank" href="https://wordpress.org/support/plugin/restrict-file-access/">https://wordpress.org/support/plugin/restrict-file-access/</a></p>
                     <br>
                     <h2>Erweitern</h2>
-                    <p class="josxhaText">Du möchtest das Plugin erweitern oder Bugs beheben? Der Source Code wird auf GitHub verwaltet: <a href="https://github.com/josxha/WordPress-Plugin-File-Secures">https://github.com/josxha/WordPress-Plugin-File-Secure</a></p>
+                    <p class="josxhaText">Du möchtest das Plugin erweitern oder Bugs beheben? Der Source Code wird auf GitHub verwaltet: <a target="_blank" href="https://github.com/josxha/WordPress-Plugin-File-Secure">https://github.com/josxha/WordPress-Plugin-File-Secure</a></p>
                 </div>
             </div>
         </div>
