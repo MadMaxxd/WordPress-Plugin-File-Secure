@@ -7,6 +7,11 @@
  */
 
 class JosxhaRfaFileSecure {
+    private $settings;
+
+    public function __construct() {
+        $this->settings = get_option(JOSXHARFA_PLUGIN_NAME);
+    }
 
 	function activate() {
 		global $wp_rewrite;
@@ -46,14 +51,34 @@ class JosxhaRfaFileSecure {
 	}
 
 	function output( $filename ) {
-		is_user_logged_in() or die( "You need to be logged in to access this file." );
+        // test if user is allowed to view file
+		if (!is_user_logged_in()) { //TODO überprüfe user role
+        $user = get_currentuserinfo();
+        var_dump($user);
+        $preferences = $this->settings['onAccess'];
+        if ($preferences['action'] === "redirect") {
+            header("Location: " . $preferences['url']);
+            die();
+        }
+        if ($preferences['text'] === "")
+            die(JOSXHARFA_NOT_PERMITTED_DEFAULT_TEXT);
+        else
+            die($preferences['text']);
+    }
 
+		// show file
 		$file_path = josxharfa_upload_dir() . "/" . $filename;
-		//header( 'Cache-Control: no-cache, must-revalidate' );
-		//header( 'Expires: Mon, 26 Jul 1997 05:00:00 GMT' );
-		if ( ! file_exists( $file_path ) ) {
-			die( "File not found." );
-		}
+        if ( ! file_exists( $file_path ) ) {
+            $preferences = $this->settings['notFound'];
+            if ($preferences['action'] === "redirect") {
+                header("Location: " . $preferences['url']);
+                die();
+            }
+            if ($preferences['text'] === "")
+                die(JOSXHARFA_FILE_NOT_FOUND_DEFAULT_TEXT);
+            else
+                die($preferences['text']);
+        }
 		header( 'Content-Length: ' . filesize( $file_path ) );
 		
 		if ( function_exists( 'mime_content_type' ) ) {
