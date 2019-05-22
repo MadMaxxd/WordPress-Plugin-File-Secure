@@ -19,3 +19,33 @@ function josxhaCopyToClipboard(text) {
         }
     }
 }
+
+function getAnchorFromUrl() {
+    let currentUrl = document.URL,
+        urlParts   = currentUrl.split('#');
+    return (urlParts.length > 1) ? urlParts[1] : null;
+}
+
+// switch tab when user clicks on another tab
+function switchTab(event) {
+    event.preventDefault();
+
+    document.querySelector("ul.nav-tabs li.active").classList.remove("active");
+    document.querySelector(".tab-pane.active").classList.remove("active");
+
+    let clickedTab = event.currentTarget;
+    let anchor = event.target;
+    let activePaneID = anchor.getAttribute("href");
+
+    clickedTab.classList.add("active");
+    document.querySelector(activePaneID).classList.add("active");
+}
+
+// checks url if settings tab was opened
+if (getAnchorFromUrl() === "settings") {
+    document.querySelector("ul.nav-tabs li.active").classList.remove("active");
+    document.querySelector(".tab-pane.active").classList.remove("active");
+
+    document.getElementById("tabSettings").classList.add("active");
+    document.querySelector("#settings").classList.add("active");
+}
