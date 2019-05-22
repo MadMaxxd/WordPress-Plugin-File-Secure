@@ -27,6 +27,7 @@ After the plugin is activated you can see a new submenu named "Geschützte Datei
 == Screenshots ==
 
 1. Dateiverwaltung
+2. Einstellungen
 
 == Changelog ==
 
@@ -39,3 +40,10 @@ For more information, have a look at the [GitHub project](https://github.com/jos
 = 1.0.1 =
 
 * improved WordPress.org integration
+
+= 1.1.0 =
+
+* Settings options added
+    * Error pages can be changed
+    * Redirect if file cannot or may not be displayed
+    * User groups can be allowed or blocked

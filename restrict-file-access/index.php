@@ -7,8 +7,8 @@
  *
  * Plugin Name: Restrict File Access
  * Plugin URI: https://github.com/josxha/WordPress-Plugin-File-Secure
- * Description: Schütze hochgeladene Dateien vor unbefugtem Zugriff. (Im Admin Interface unter Medien->Geschützte Dateien zu finden)
- * Version: 1.0.1
+ * Description: Schütze hochgeladene Dateien vor unbefugtem Zugriff. (Im Admin Interface auffindbar unter Medien->Geschützte Dateien)
+ * Version: 1.1.0
  * Author: Joscha Eckert
  * License: GPLv2
  * Author URI: https://joscha-eckert.de
