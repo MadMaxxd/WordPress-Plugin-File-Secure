@@ -51,3 +51,8 @@ For more information, have a look at the [GitHub project](https://github.com/jos
 = 1.1.1 =
 
 * fixed error that occurred on update
+
+= 1.1.2 =
+
+* redirection to files should be set again after an update happend without accessing the admin dashboard
+* functionality to upload multiple files at once
