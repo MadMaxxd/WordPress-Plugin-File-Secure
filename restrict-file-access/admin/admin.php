@@ -34,6 +34,7 @@ class JosxhaRfaAdmin {
 
 	public function documents_create_admin_page() {
 		global $wp;
+        $allowedExtensions = array("png", "jpg", "jpeg", "pdf", "mp3", "mp4", "xlsx", "docx", "doc", "xls", "ppt", "pptx", "txt", "csv", "gif");
 		$this->documents_options = get_option( 'documents_option_name' );
 		$url                     = home_url( $wp->request ) . '/?file=[NAME DER DATEI]';
 		$uploadDir               = josxharfa_upload_dir() . "/";
@@ -44,31 +45,33 @@ class JosxhaRfaAdmin {
 
 		// test if a file has been submitted
 		if ( isset( $_FILES['file'] ) && ! empty( $_FILES['file'] ) ) {
-			$tmpFileObject = $_FILES['file']['name'];
-			$fileNameNew   = str_replace( " ", "_", pathinfo( $tmpFileObject, PATHINFO_FILENAME ) );
-			$fileExtension = pathinfo( $tmpFileObject, PATHINFO_EXTENSION );
+            $amountFiles = count($_FILES['file']['name']);
+            $message = '';
+            for($i=0; $i<$amountFiles; $i++) {
+                $tmpFileObject = $_FILES['file']['name'][$i];
+                $fileNameNew = str_replace(" ", "_", pathinfo($tmpFileObject, PATHINFO_FILENAME));
+                $fileExtension = pathinfo($tmpFileObject, PATHINFO_EXTENSION);
+                $pathNewFile = $uploadDir . $fileNameNew . "." . $fileExtension;
 
-			// test if the file type is allowed
-			$allowedExtensions = array("png", "jpg", "jpeg", "pdf", "mp3", "mp4", "xlsx", "docx", "doc", "xls", "ppt", "pptx", "txt", "csv", "gif");
-			if ( in_array( strtolower( $fileExtension ), $allowedExtensions, true ) ) {
-				$pathNewFile = $uploadDir . $fileNameNew . "." . $fileExtension;
+                // rename file if name already exists
+                $counter = 0;
+                while (file_exists($pathNewFile)) {
+                    $counter++;
+                    $pathNewFile = $uploadDir . $fileNameNew . "_" . $counter . "." . $fileExtension;
+                }
 
-				// rename file if name already exists
-				$counter     = 0;
-				while ( file_exists( $pathNewFile ) ) {
-					$counter ++;
-					$pathNewFile = $uploadDir . $fileNameNew . "_" . $counter . "." . $fileExtension;
-				}
-
-				// move file from tmp to files directory
-				if ( move_uploaded_file( $_FILES['file']['tmp_name'], $pathNewFile ) ) {
-					$message = '<p style="color: green">"' . basename( $pathNewFile ) . '" wurde erfolgreich hochgeladen.</p>';
-				} else {
-					$message = "<p style='color: red'>Die Datei konnte nicht hochgeladen werden.<br/>" . error_get_last() . "<br></p>";
-				}
-			} else {
-				$message = "<p style='color: red'>Dateien mit diesem Dateiformat dürfen nicht hochgeladen werden.</p>";
-			}
+                // test if the file type is allowed
+                if (in_array(strtolower($fileExtension), $allowedExtensions, true)) {
+                    // move file from tmp to files directory
+                    if (move_uploaded_file($_FILES['file']['tmp_name'][$i], $pathNewFile)) {
+                        $message .= '<p style="color: green">"' . basename($pathNewFile) . '" wurde erfolgreich hochgeladen.</p>';
+                    } else {
+                        $message .= "<p style='color: red'>Die Datei \"" . basename($pathNewFile) . "\" konnte nicht hochgeladen werden. " . error_get_last() . "</p>";
+                    }
+                } else {
+                    $message .= "<p style='color: red'>Dateien mit dem Dateiformat ." . $fileExtension . " dürfen nicht hochgeladen werden (\"" . basename($pathNewFile) . "\").</p>";
+                }
+            }
 		}
 
 
@@ -99,8 +102,8 @@ class JosxhaRfaAdmin {
 	        $settings = get_option(JOSXHARFA_PLUGIN_NAME);
         }
 
+        $maxUploadSize = ini_get("upload_max_filesize");
 		// echo content of the admin page ?>
-
         <div class="wrap">
             <h2>Geschützte Dateien</h2>
 			<?php settings_errors(); ?>
@@ -125,12 +128,13 @@ class JosxhaRfaAdmin {
 		                <?php echo $url ?>
                     </p>
                     <p class="josxhaText">
-                        Erlaubte Dateiformate sind .png .jpg .jpeg .pdf .mp3 .mp4 .xlsx .docx .doc .xls .ppt .pptx .txt .csv .gif
+                        Erlaubte Dateiformate sind<?php foreach($allowedExtensions as $item) echo " $item" ?>
                     </p>
                     <br>
                     <h2>Datei hochladen</h2>
                     <form action="" id="uploadFile" enctype="multipart/form-data" method="post">
-                        <input type="file" name="file">
+                        <p class="josxhaText">Es können mehrere Dateien ausgewählt werden. Es können maximal <?php echo $maxUploadSize; ?> pro Anfrage hochgeladen werden.</p>
+                        <input type="file" name="file[]" id="file" multiple>
                         <button class="button button-primary" type="submit" form="uploadFile">Hochladen</button>
                     </form>
 					<?php if ( isset( $message ) )

@@ -3,8 +3,8 @@ Contributors: josxha
 Donate link: https://www.paypal.me/joschaeckert
 Tags: restrict, file, secure, sicher, schützen, angemeldet, Dateien, login, permission, Joscha, Eckert, josxha, privat, private, josxha
 Requires at least: 4.9
-Tested up to: 5.2
-Stable tag: 1.1.1
+Tested up to: 5.3.2
+Stable tag: 1.1.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
