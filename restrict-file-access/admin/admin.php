@@ -19,8 +19,8 @@ class JosxhaRfaAdmin {
 
 	public function documents_add_plugin_page() {
 		add_media_page(
-			'Geschützte Dateien', // page_title
-			'Geschützte Dateien', // menu_title
+			'Protected Files', // page_title
+			'Protected Files', // menu_title
 			'manage_options', // capability
 			JOSXHARFA_PLUGIN_NAME, // menu_slug
 			array( $this, 'documents_create_admin_page' ) // function
@@ -28,7 +28,7 @@ class JosxhaRfaAdmin {
 	}
 
 	public function action_links( $links ) {
-		$links[] = '<a href="' . menu_page_url( "upload.php?page=" . JOSXHARFA_PLUGIN_NAME, false ) . '">Einstellungen</a>';
+		$links[] = '<a href="' . menu_page_url( "upload.php?page=" . JOSXHARFA_PLUGIN_NAME, false ) . '">Settings</a>';
 		return $links;
 	}
 
@@ -64,12 +64,12 @@ class JosxhaRfaAdmin {
                 if (in_array(strtolower($fileExtension), $allowedExtensions, true)) {
                     // move file from tmp to files directory
                     if (move_uploaded_file($_FILES['file']['tmp_name'][$i], $pathNewFile)) {
-                        $message .= '<p style="color: green">"' . basename($pathNewFile) . '" wurde erfolgreich hochgeladen.</p>';
+                        $message .= '<p style="color: green">"' . basename($pathNewFile) . '" was successfully uploaded.</p>';
                     } else {
-                        $message .= "<p style='color: red'>Die Datei \"" . basename($pathNewFile) . "\" konnte nicht hochgeladen werden. " . error_get_last() . "</p>";
+                        $message .= "<p style='color: red'>The file \"" . basename($pathNewFile) . "\" could not be uploaded. " . error_get_last() . "</p>";
                     }
                 } else {
-                    $message .= "<p style='color: red'>Dateien mit dem Dateiformat ." . $fileExtension . " dürfen nicht hochgeladen werden (\"" . basename($pathNewFile) . "\").</p>";
+                    $message .= "<p style='color: red'>Files with the Dateiformat ." . $fileExtension . " must not be uploaded (\"" . basename($pathNewFile) . "\").</p>";
                 }
             }
 		}
@@ -105,37 +105,37 @@ class JosxhaRfaAdmin {
         $maxUploadSize = ini_get("upload_max_filesize");
 		// echo content of the admin page ?>
         <div class="wrap">
-            <h2>Geschützte Dateien</h2>
+            <h2>Protected files</h2>
 			<?php settings_errors(); ?>
             <br>
 
             <ul class="nav nav-tabs">
-                <li onclick="switchTab(event)" id="tabFiles" class="active"><a href="#files">Dateien hochladen</a></li>
-                <li onclick="switchTab(event)" id="tabSettings"><a href="#settings">Einstellungen</a></li>
-                <li onclick="switchTab(event)" id="tabHelp"><a href="#help">Hilfe</a></li>
+                <li onclick="switchTab(event)" id="tabFiles" class="active"><a href="#files">Upload files</a></li>
+                <li onclick="switchTab(event)" id="tabSettings"><a href="#settings">Settings</a></li>
+                <li onclick="switchTab(event)" id="tabHelp"><a href="#help">Help</a></li>
             </ul>
 
 
             <div class="tab-content">
                 <div id="files" class="tab-pane active">
-                    <h2>Anleitung</h2>
+                    <h2>Instructions</h2>
                     <p class="josxhaText">
-                        Auf die hochgeladenen Dateien kann verlinkt werden. Bilder können zudem auf Seiten und Beiträgen über die URL eingebunden werden. <br/>
-                        Es können nur angemeldete Nutzer auf die Dateien zugreifen, ein direkter Zugriff ist ebenfalls nicht möglich.
+                        You can link to the uploaded files. Images can also be integrated into pages and articles via the URL. <br/>
+                        Only registered users can access the files; direct access is also not possible.
                     </p>
                     <p class="josxhaText">
-                        Der Aufbau des Links ist wie folgt:<br>
+                        The structure of the link is as follows:<br>
 		                <?php echo $url ?>
                     </p>
                     <p class="josxhaText">
-                        Erlaubte Dateiformate sind<?php foreach($allowedExtensions as $item) echo " $item" ?>
+                        Allowed file formats are<?php foreach($allowedExtensions as $item) echo " $item" ?>
                     </p>
                     <br>
-                    <h2>Datei hochladen</h2>
+                    <h2>Upload file</h2>
                     <form action="" id="uploadFile" enctype="multipart/form-data" method="post">
-                        <p class="josxhaText">Es können mehrere Dateien ausgewählt werden. Es können maximal <?php echo $maxUploadSize; ?> pro Anfrage hochgeladen werden.</p>
+                        <p class="josxhaText">Multiple files can be selected. It can be a maximum <?php echo $maxUploadSize; ?> uploaded per request.</p>
                         <input type="file" name="file[]" id="file" multiple>
-                        <button class="button button-primary" type="submit" form="uploadFile">Hochladen</button>
+                        <button class="button button-primary" type="submit" form="uploadFile">Upload</button>
                     </form>
 					<?php if ( isset( $message ) )
 						echo "<p>" . $message . "</p>" ?>
@@ -153,15 +153,15 @@ class JosxhaRfaAdmin {
                             josxhaCopyToClipboard(url);
                         }
                     </script>
-                    <h2>Hochgeladene Dateien</h2>
+                    <h2>Uploaded files</h2>
                     <table class="josxharfaTable" style="max-width:100%">
                         <tr class="">
-                            <td class="josxharfaTable josxharfaTableRow"><b>Dateiname</b></td>
-                            <td class="josxharfaTable josxharfaTableRow" style="text-align: right"><b>Dateigröße</b>
+                            <td class="josxharfaTable josxharfaTableRow"><b>Filename</b></td>
+                            <td class="josxharfaTable josxharfaTableRow" style="text-align: right"><b>Filesize</b>
                             </td>
-                            <td class="josxharfaTable josxharfaTableRow" style="text-align: right"><b>Hochgeladen am</b>
+                            <td class="josxharfaTable josxharfaTableRow" style="text-align: right"><b>Uploaded on</b>
                             </td>
-                            <td colspan="2" class="josxharfaTable josxharfaTableRow"><b>Aktionen</b></td>
+                            <td colspan="2" class="josxharfaTable josxharfaTableRow"><b>Actions</b></td>
                         </tr>
 						<?php
                         // insert uploaded files as content of the table
@@ -196,14 +196,14 @@ class JosxhaRfaAdmin {
                                         <p class="josxharfaRowTextRight"><?php echo $uploadedAt; ?></p>
                                     </td>
                                     <td class="josxharfaTable josxharfaTableRow">
-                                        <a title="URL in die Zwischenablage kopieren" href='' onclick='josxhaRfaCopy(event,"<?php echo $fileUrl; ?>"); return false;'>
+                                        <a title="Copy the URL to the clipboard" href='' onclick='josxhaRfaCopy(event,"<?php echo $fileUrl; ?>"); return false;'>
                                             <img src='<?php echo $imgCopy; ?>' style='height: 15px; width: 15px; padding: 4px' alt="URL kopieren">
                                         </a>
                                     </td>
                                     <td class="josxharfaTable josxharfaTableRow">
                                         <form method="post" action="?page=<?php echo JOSXHARFA_PLUGIN_NAME ?>">
                                             <input type="hidden" name="deleteFile" value="<?php echo $file; ?>">
-                                            <button class="josxharfaImageButton" title="Datei löschen" type="submit">
+                                            <button class="josxharfaImageButton" title="Delete file" type="submit">
                                                 <img src='<?php echo $imgDelete; ?>' style='height: 15px; width: 15px; padding: 4px' alt="Löschen">
                                             </button>
                                         </form>
@@ -218,7 +218,7 @@ class JosxhaRfaAdmin {
 
                 <div id="settings" class="tab-pane">
                     <form action="?page=<?php echo JOSXHARFA_PLUGIN_NAME ?>#settings" enctype="multipart/form-data" method="post" id="formSettings">
-                        <h2>Bei unerlaubtem Zugriff</h2>
+                        <h2>With unauthorized access</h2>
                         <table style="width: 100%;">
                             <tr>
                                 <td style="padding-bottom: 10px">
@@ -228,7 +228,7 @@ class JosxhaRfaAdmin {
 	                                            <?php if ($settings['onAccess']['action'] === "text") echo "checked";  ?>
                                                value="text"
                                                name="onAccess[action]">
-                                        Zeige Nachricht (html)
+                                        Show message (html)
                                     </label>
                                 </td>
                                 <td style="padding-bottom: 10px">
@@ -238,7 +238,7 @@ class JosxhaRfaAdmin {
 	                                            <?php if ($settings['onAccess']['action'] === "redirect") echo "checked";  ?>
                                                 value="redirect"
                                                 name="onAccess[action]">
-                                        Weiterleitung
+                                        Forwarding
                                     </label>
                                 </td>
                             </tr>
@@ -268,7 +268,7 @@ class JosxhaRfaAdmin {
 
                         <br><br>
 
-                        <h2>Wenn Datei nicht vorhanden</h2>
+                        <h2>If file does not exist</h2>
                         <table style="width: 100%;">
                             <tr>
                                 <td style="padding-bottom: 10px">
@@ -278,7 +278,7 @@ class JosxhaRfaAdmin {
 	                                            <?php if ($settings['notFound']['action'] === "text") echo "checked";  ?>
                                                 type="radio"
                                                 name="notFound[action]">
-                                        Zeige Nachricht (html)
+                                        Show message (html)
                                     </label>
                                 </td>
                                 <td style="padding-bottom: 10px">
@@ -288,7 +288,7 @@ class JosxhaRfaAdmin {
 	                                            <?php if ($settings['notFound']['action'] === "redirect") echo "checked";  ?>
                                                 type="radio"
                                                 name="notFound[action]">
-                                        Weiterleitung
+                                        Forwarding
                                     </label>
                                 </td>
                             </tr>
@@ -319,7 +319,7 @@ class JosxhaRfaAdmin {
 
                         <br><br>
 
-                        <h2>Erlaubte Nutzergruppen</h2>
+                        <h2>Allowed user groups</h2>
 						<?php
                         $allowedRoles = $settings['userRole'];
                         foreach ( josxharfa_get_wordpress_roles() as $roleName => $roleData ) {
@@ -341,10 +341,10 @@ class JosxhaRfaAdmin {
 
                 <div id="help" class="tab-pane">
                     <h2>Support</h2>
-                    <p class="josxhaText">Du brauchst Hilfe oder hast einen Fehler entdeckt? Dieses Plugin hat ein Forum unter <a target="_blank" href="https://wordpress.org/support/plugin/restrict-file-access/">https://wordpress.org/support/plugin/restrict-file-access/</a></p>
+                    <p class="josxhaText">Do you need help or have you found a mistake? This plugin has a forum below <a target="_blank" href="https://wordpress.org/support/plugin/restrict-file-access/">https://wordpress.org/support/plugin/restrict-file-access/</a></p>
                     <br>
-                    <h2>Erweitern</h2>
-                    <p class="josxhaText">Du möchtest das Plugin erweitern oder Bugs beheben? Der Source Code wird auf GitHub verwaltet: <a target="_blank" href="https://github.com/josxha/WordPress-Plugin-File-Secure">https://github.com/josxha/WordPress-Plugin-File-Secure</a></p>
+                    <h2>Expand</h2>
+                    <p class="josxhaText">Would you like to expand the plugin or fix bugs? The source code is managed on GitHub: <a target="_blank" href="https://github.com/josxha/WordPress-Plugin-File-Secure">https://github.com/josxha/WordPress-Plugin-File-Secure</a></p>
                 </div>
             </div>
         </div>
